@@ -1,3 +1,54 @@
+Flow chart how the application works
+
+1. User Authentication:
+Frontend (React + Zustand):
+
+User enters login credentials.
+Zustand manages auth state.
+Dispatch login request to the backend.
+Backend (Node.js + Express + MongoDB):
+
+Validate credentials.
+Check the user in MongoDB.
+Generate a token upon success.
+Send response to the frontend.
+2. Establish WebSocket Connection:
+Frontend (React + Socket.io):
+
+After login, the client establishes a WebSocket connection to the server with the user ID.
+Zustand stores the online users' state.
+Backend (Node.js + Socket.io):
+
+Receives WebSocket connection.
+Stores user's socket ID in userSocketMap.
+Emits the list of online users.
+3. Real-Time Messaging:
+Frontend (React):
+
+User sends a message via input.
+Zustand holds conversation state and messages.
+Message is dispatched to the backend via WebSocket.
+Backend (Node.js):
+
+Receives the message.
+Checks if conversation exists.
+Saves message in MongoDB.
+Emits message to the receiver's socket ID.
+4. Receive Messages in Real-Time:
+Frontend (React):
+Listen for "newMessage" events from Socket.io.
+Zustand updates the conversation with the new message.
+5. User Disconnection:
+Frontend:
+WebSocket disconnects when the user leaves.
+Backend:
+Remove the user from userSocketMap.
+Emit an updated list of online users.
+
+
+
+Why I am choosing all the tools answer
+
 1. Database selection
 Database of choice: MongoDB (NoSQL) .
 The reasoning:
