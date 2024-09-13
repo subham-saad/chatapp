@@ -12,6 +12,8 @@ Validate credentials.
 Check the user in MongoDB.
 Generate a token upon success.
 Send response to the frontend.
+
+
 2. Establish WebSocket Connection:
 Frontend (React + Socket.io):
 
@@ -22,6 +24,8 @@ Backend (Node.js + Socket.io):
 Receives WebSocket connection.
 Stores user's socket ID in userSocketMap.
 Emits the list of online users.
+
+
 3. Real-Time Messaging:
 Frontend (React):
 
@@ -34,10 +38,14 @@ Receives the message.
 Checks if conversation exists.
 Saves message in MongoDB.
 Emits message to the receiver's socket ID.
+
+
 4. Receive Messages in Real-Time:
 Frontend (React):
 Listen for "newMessage" events from Socket.io.
 Zustand updates the conversation with the new message.
+
+
 5. User Disconnection:
 Frontend:
 WebSocket disconnects when the user leaves.
